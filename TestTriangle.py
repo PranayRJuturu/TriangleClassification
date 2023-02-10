@@ -1,55 +1,40 @@
+# -*- coding: utf-8 -*-
+"""
+Updated Jan 21, 2018
+The primary goal of this file is to demonstrate a simple unittest implementation
+@author: jrr
+@author: rk
+"""
 import unittest
-import traingleclassification
+from Triangle import classifyTriangle
+# This code implements the unit test functionality
+# https://docs.python.org/3/library/unittest.html has a nice description of the framework
+class TestTriangles(unittest.TestCase):
+    # define multiple sets of tests as functions with names that begin
+    def testEquilateralTriangles(self): 
+        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 should be equilateral')
 
-class TestTriangleClassification(unittest.TestCase):
-    # Testcases for equilateral triangle
-    def test_equilateral_triangle(self):
+    def testRightTriangleA(self): 
+        self.assertEqual(classifyTriangle(3,4,5),'Right','3,4,5 is a Right triangle')
+    def testScaleneTriangle(self):
+        self.assertEqual(classifyTriangle(1,2,3),'Scalene','1,2,3 should be scalene')
         
-        self.assertEqual(traingleclassification.classify_triangle(1, 1, 1), 'The triangle is Equilateral') 
-        self.assertNotEqual(traingleclassification.classify_triangle(1, 1, 2), 'The triangle is Equilateral')
-        
-        #Invalid Input
-        self.assertEqual(traingleclassification.classify_triangle(0, 0, 0),'Invalid lengths')
-        self.assertNotEqual(traingleclassification.classify_triangle(1, 1, 1),'Invalid lengths')
+    def testIsoscelesTriangle(self):
+        self.assertEqual(classifyTriangle(2,2,1),'Isosceles','2,2,1 should be isosceles')
 
-        #Float
-        self.assertEqual(traingleclassification.classify_triangle(1.1, 1.1, 1.1),'The triangle is Equilateral')
-        self.assertNotEqual(traingleclassification.classify_triangle(1.1, 1.2, 1.1),'The triangle is Equilateral')
+    def testInvalidInputs(self): 
+        self.assertEqual(classifyTriangle(0,300,2),'InvalidInput')
 
-        
+    def testInvalidInputsA(self):
+        self.assertEqual(classifyTriangle(-1,20,1),'InvalidInput')
 
-    def test_right_angled_triangle(self):
-        self.assertEqual(traingleclassification.classify_triangle(3, 4, 5), 'The triangle is Right-angled')
-        self.assertNotEqual(traingleclassification.classify_triangle(3, 4, 6), 'The triangle is Right-angled')
+    def testScaleneTriangle(self):
+        self.assertEqual(classifyTriangle(1,2,3),'Scalene','1,2,3 should be scalene')
 
-        #Invalid Input
-        self.assertEqual(traingleclassification.classify_triangle(0, 0, 0),'Invalid lengths')
 
-        #Float
-        self.assertNotEqual(traingleclassification.classify_triangle(3.1, 4.1, 5.1),'The triangle is Right-angled')
-
-    def test_isosceles_triangle(self):
-        self.assertEqual(traingleclassification.classify_triangle(1, 2, 1), 'The triangle is Isosceles')
-        self.assertNotEqual(traingleclassification.classify_triangle(3, 1, 4), 'The triangle is Isosceles')
-
-        #Invalid Input
-        self.assertEqual(traingleclassification.classify_triangle(0, 0, 0),'Invalid lengths')
-
-        #Float
-        self.assertEqual(traingleclassification.classify_triangle(3.1, 3.1, 5.1),'The triangle is Isosceles')
-        self.assertNotEqual(traingleclassification.classify_triangle(1.1, 1.1, 1.1),'The triangle is Isosceles')
-
-    def test_scalene_triangle(self):
-        self.assertEqual(traingleclassification.classify_triangle(1, 2, 3), 'The triangle is Scalene')
-        self.assertNotEqual(traingleclassification.classify_triangle(3, 1, 1), 'The triangle is Scalene')
-
-        #Invalid Input
-        self.assertEqual(traingleclassification.classify_triangle(0, 0, 0),'Invalid lengths')
-
-        #Float
-        self.assertEqual(traingleclassification.classify_triangle(3.1, 2.1, 5.1),'The triangle is Scalene')
-        self.assertNotEqual(traingleclassification.classify_triangle(1.1, 1.1, 1.1),'The triangle is Scalene')
-
+    def testEquilateralTrianglesA(self):
+        self.asserEqual(classifyTriangle(1,1,2),'Equilateral','1,1,2 should be isosceles')
 
 if __name__ == '__main__':
+    print('Running unit tests')
     unittest.main()
