@@ -57,11 +57,4 @@ return 'Right'
     elif (a==b) or (b==c) or (c==b):
         return 'Isoceles'
 
-
-a=int(input(print("Enter a :")))
-b=int(input(print("Enter b :")))
-c=int(input(print("Enter c :")))
-
-print(classifyTriangle(a,b,c))
-
 mybrand.my_brand("Triangle classification")
